@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secure PDF Viewer</title>
-<style>
+<title>Ghosted By Monday — Booklet Viewer</title>
+<meta name="robots" content="noindex, nofollow">
+ <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
     height: 100%;
@@ -110,7 +111,7 @@
     </button>
   </div>
   <button id="unlock">Unlock PDF</button>
-  <div id="status"></div>
+<div id="status" role="alert" aria-live="assertive"></div>
 </div>
 
 <div id="viewer">
@@ -161,11 +162,12 @@
   const frame   = document.getElementById("pdf-frame");
 
   let showing = false;
-  eyeBtn.addEventListener("click", () => {
-    showing = !showing;
-    pwInput.type = showing ? "text" : "password";
-    iconHid.classList.toggle("hidden", showing);
-    iconSho.classList.toggle("hidden", !showing);
+    eyeBtn.addEventListener("click", () => {
+      showing = !showing;
+      pwInput.type = showing ? "text" : "password";
+      iconHid.classList.toggle("hidden", showing);
+      iconSho.classList.toggle("hidden", !showing);
+      eyeBtn.setAttribute("aria-label", showing ? "Hide password" : "Show password");
   });
 
   pwInput.addEventListener("keydown", (e) => {
